@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: circe;
+                src: url("CRC35.otf") format("opentype");
+            }
+            @font-face {
+                font-family: circe;
+                font-weight: bold;
+                src: url("CRCBold.otf") format("opentype");
+            }
+
+            body {
+                font-family: circe;
+            }
+            p, h1 {
+                margin: 0;
+            }
+            h1.site-name {
+                font-weight: bold;
+                margin: 2.5rem 2rem;
+                font-size: 1.8rem;
+            }
+            .menu-bars {
+                position: absolute;
+                right: 3rem;
+                top: 4rem;
+                height: 30px;
+                width: 30px;
+                cursor: pointer;
+            }
+            .menu-bar-1, .menu-bar-2 {
+                background: black;
+                height: 2px;
+                position: absolute;
+                transition: all 0.25s;
+            }
+            .menu-bar-1 {
+                width: 30px;
+                left: 0;
+            }
+            .menu-bar-2 {
+                width: 16px;
+                right: 0;
+                top: 9px;
+            }
+            .menu-bars:hover .menu-bar-1 {
+                width: 16px;
+            }
+            .menu-bars:hover .menu-bar-2 {
+                width: 30px;
+            }
+            img.planets {
+                position: absolute;
+                right: 4rem;
+                top: 6rem;
+                width: 600px;
+            }
+            .hero-text {
+                width: 570px;
+                position: absolute;
+                bottom: 135px;
+                left: 90px;
+            }
+            .we-do-it-all {
+                font-size: 1.9rem;
+                color: #b7b4b4;
+            }
+            .nav {
+                display: flex;
+                justify-content: space-between;
+            }
+            .nav-option {
+                position: relative;
+                transition: all 0.25s;
+                cursor: pointer;
+            }
+            .nav-option::before {
+                content: '';
+                background: #e8e9e8;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 42%;
+                bottom: calc(58% - 7px);
+                z-index: -1;
+                transition: all 0.25s;
+            }
+            .nav-option:hover {
+                color: white;
+            }
+            .nav-option:hover::before {
+                background: black;
+                top: 10px;
+                bottom: 10px;
+            }
+            .nav-option-text {
+                font-size: 3.1rem;
+                font-weight: normal;
+            }
+            .hero-text-description {
+                font-size: 1.25rem;
+                letter-spacing: 0.05rem;
+                line-height: 2.3rem;
+                margin-top: 1rem;
+                width: 640px;
+            }
+            .pointer-follow {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                border: solid 2px #3c3b3b;
+                border-radius: 50%;
+                transition: 
+                    left 0.1s, 
+                    top 0.1s, 
+                    width 0.4s, 
+                    height 0.4s, 
+                    border 0.4s,
+                    margin-left 0.4s,
+                    margin-top 0.4s;
+                pointer-events: none;
+                transform-origin: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="site-name">cuberto</h1>
+        <div class="menu-bars">
+            <div class="menu-bar-1"></div>
+            <div class="menu-bar-2"></div>
+        </div>
+        <img class="planets" src="planets.svg" />
+        <div class="hero-text">
+            <p class="we-do-it-all">We do it all</p>
+            <div class="nav">
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Websites</h1>
+                </div>
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Apps</h1>
+                </div>
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Branding</h1>
+                </div>
+            </div>
+            <p class="hero-text-description">
+                Leading digital agency with solid design and development <br>
+                expertise. We build mobile and web products for startups and design <br>
+                intricate trading platforms.
+            </p>
+        </div>
+        <div class="pointer-follow"></div>
+    </body>
+    <script>
+        document.addEventListener("mousemove", circleCursorFollower);
+
+        function circleCursorFollower() {
+            let cursorFollow = document.getElementsByClassName("pointer-follow")[0];
+            if (Date.now() % 2 === 1) {
+                cursorFollow.style.left = (event.clientX - 20) + "px";
+                cursorFollow.style.top = (event.clientY - 20) + "px";
+            }
+            console.log(event.clientX + ", " + event.clientY);
+
+            if (event.clientX < 400 && event.clientY < 400) {
+                cursorFollow.style.width = "0px";
+                cursorFollow.style.height = "0px";
+                cursorFollow.style["border-width"] = "0";
+                cursorFollow.style["margin-left"] = "20px";
+                cursorFollow.style["margin-top"] = "20px";
+            } else {
+                cursorFollow.style.width = "40px";
+                cursorFollow.style.height = "40px";
+                cursorFollow.style["border-width"] = "2px";
+                cursorFollow.style["margin-left"] = "0";
+                cursorFollow.style["margin-top"] = "0";
+            }
+            // 65 - 681, 522 - 606
+        }
+    </script>
+</html>
