@@ -11,9 +11,18 @@
                 font-weight: bold;
                 src: url("CRCBold.otf") format("opentype");
             }
+            @font-face {
+                font-family: din-condensed;
+                font-weight: bold;
+                src: url("D-DINCondensed-Bold.otf") format("opentype");
+            }
 
-            body {
+            body, html {
                 font-family: circe;
+                margin: 0;
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
             }
             p, h1 {
                 margin: 0;
@@ -22,6 +31,9 @@
                 font-weight: bold;
                 margin: 2.5rem 2rem;
                 font-size: 1.8rem;
+                width: fit-content;
+                position: absolute;
+                top: 0;
             }
             .menu-bars {
                 position: absolute;
@@ -40,17 +52,21 @@
             .menu-bar-1 {
                 width: 30px;
                 left: 0;
+                top: 10px;
             }
             .menu-bar-2 {
                 width: 16px;
                 right: 0;
-                top: 9px;
+                top: 19px;
             }
             .menu-bars:hover .menu-bar-1 {
                 width: 16px;
             }
             .menu-bars:hover .menu-bar-2 {
                 width: 30px;
+            }
+            .page {
+                height: 100vh;
             }
             img.planets {
                 position: absolute;
@@ -107,6 +123,40 @@
                 margin-top: 1rem;
                 width: 640px;
             }
+            .featured-projects {
+                position: absolute;
+                left: 90px;
+                bottom: 0;
+                width: fit-content;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
+            .featured-projects:hover {
+                bottom: -10px;
+                padding-top: 10px;
+            }
+            .featured-projects-text {
+                font-weight: bold;
+                font-family: 'din-condensed';
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+            .featured-projects-bar {
+                position: relative;
+                height: 50px;
+                width: 1px;
+                background: #dedcdc;
+                margin-top: 10px;
+            }
+            .featured-projects-bar::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                background: black;
+                bottom: 50px;
+                width: 1px;
+                animation: featured-projects-bar-height 2s infinite;
+            }
             .pointer-follow {
                 position: absolute;
                 width: 40px;
@@ -124,6 +174,12 @@
                 pointer-events: none;
                 transform-origin: center;
             }
+
+            @keyframes featured-projects-bar-height {
+                0% { bottom: 50px; top: 0; }
+                25% { bottom: 0; top: 0; }
+                50% { bottom: 0; top: 50px; }
+            }
         </style>
     </head>
     <body>
@@ -132,25 +188,50 @@
             <div class="menu-bar-1"></div>
             <div class="menu-bar-2"></div>
         </div>
-        <img class="planets" src="planets.svg" />
-        <div class="hero-text">
-            <p class="we-do-it-all">We do it all</p>
-            <div class="nav">
-                <div class="nav-option">
-                    <h1 class="nav-option-text">Websites</h1>
+        <div class="landing-page page">
+            <img class="planets" src="planets.svg" />
+            <div class="hero-text">
+                <p class="we-do-it-all">We do it all</p>
+                <div class="nav">
+                    <div class="nav-option">
+                        <h1 class="nav-option-text">Websites</h1>
+                    </div>
+                    <div class="nav-option">
+                        <h1 class="nav-option-text">Apps</h1>
+                    </div>
+                    <div class="nav-option">
+                        <h1 class="nav-option-text">Branding</h1>
+                    </div>
                 </div>
-                <div class="nav-option">
-                    <h1 class="nav-option-text">Apps</h1>
+                <p class="hero-text-description">
+                    Leading digital agency with solid design and development <br>
+                    expertise. We build mobile and web products for startups and design <br>
+                    intricate trading platforms.
+                </p>
+            </div>
+            <div class="featured-projects">
+                <p class="featured-projects-text">FEATURED PROJECTS</p>
+                <div class="featured-projects-bar"></div>
+            </div>
+        </div>
+        <div class="dsx-page page">
+            <div class="project-text">
+                <div class="featured-project dsx-background">
+                    <p class="featured-project-text">featured project</p>
                 </div>
-                <div class="nav-option">
-                    <h1 class="nav-option-text">Branding</h1>
+                <div class="project-copy">
+                    <h1 class="project-title">DSX</h1>
+                    <p class="project-description">Creation of a trading cryptocurrency exchange platform.</p>
+                    <p class="project-elements">branding, design, development, product</p>
+                </div>
+                <div class="view-case-container">
+                    <p class="view-case-text">VIEW CASE</p>
                 </div>
             </div>
-            <p class="hero-text-description">
-                Leading digital agency with solid design and development <br>
-                expertise. We build mobile and web products for startups and design <br>
-                intricate trading platforms.
-            </p>
+            <p class="placeholder">D</p>
+            <div class="project-image">
+
+            </div>
         </div>
         <div class="pointer-follow"></div>
     </body>
@@ -165,7 +246,16 @@
             }
             console.log(event.clientX + ", " + event.clientY);
 
-            if (event.clientX < 400 && event.clientY < 400) {
+            if (
+                (event.clientX > 65 && event.clientX < 681 && event.clientY > 509 && event.clientY < 618) ||
+                (event.clientX > 1226 && event.clientY > 35 && event.clientY < 102) ||
+                (event.clientY > window.innerHeight - 107 && event.clientX > 60 && event.clientX < 249) ||
+                (event.clientX > 640 && event.clientX < 1276 && event.clientY > 72 && event.clientY < 502) ||
+                (event.clientX < 22) ||
+                (event.clientY < 22) ||
+                (event.clientX > window.innerWidth - 32) ||
+                (event.clientY > window.innerHeight - 32)
+            ) {
                 cursorFollow.style.width = "0px";
                 cursorFollow.style.height = "0px";
                 cursorFollow.style["border-width"] = "0";
@@ -178,7 +268,13 @@
                 cursorFollow.style["margin-left"] = "0";
                 cursorFollow.style["margin-top"] = "0";
             }
-            // 65 - 681, 522 - 606
+        }
+
+        document.addEventListener("scroll", hijackScrolling);
+
+        function hijackScrolling() {
+            event.preventDefault();
+            console.log('preventing');
         }
     </script>
 </html>
