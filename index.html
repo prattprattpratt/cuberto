@@ -71,6 +71,7 @@
                 right: 4rem;
                 top: 6rem;
                 width: 600px;
+                transition: all 0.4s;
             }
             .hero-text {
                 width: 570px;
@@ -78,13 +79,38 @@
                 bottom: 135px;
                 left: 90px;
             }
+            .hero-text-1, .hero-text-2, .hero-text-3 {
+                position: relative;
+            }
             .we-do-it-all {
                 font-size: 1.9rem;
                 color: #b7b4b4;
+                position: relative;
+            }
+            #we-do-it-all-cover, 
+            #nav-cover-1, 
+            #nav-cover-2, 
+            #nav-cover-3,
+            #hero-text-cover-1,
+            #hero-text-cover-2,
+            #hero-text-cover-3 {
+                position: absolute;
+                width: 100%;
+                height: 0;
+                transition: all 0.4s;
+                bottom: 0;
+                left: 0;
+                background: white;
+            }
+            #hero-text-cover-1,
+            #hero-text-cover-2,
+            #hero-text-cover-3 {
+                width: 640px;
             }
             .nav {
                 display: flex;
                 justify-content: space-between;
+                position: relative;
             }
             .nav-option {
                 position: relative;
@@ -271,24 +297,39 @@
             <div class="menu-bar-2"></div>
         </div>
         <div class="landing-page page">
-            <img class="planets" src="planets.svg" />
+            <img id="planets-img" class="planets" src="planets.svg" />
             <div class="hero-text">
-                <p class="we-do-it-all">We do it all</p>
+                <p class="we-do-it-all">
+                    We do it all
+                    <span id="we-do-it-all-cover"></span>
+                </p>
                 <div class="nav">
                     <div class="nav-option">
                         <h1 class="nav-option-text">Websites</h1>
+                        <span id="nav-cover-1"></span>
                     </div>
                     <div class="nav-option">
                         <h1 class="nav-option-text">Apps</h1>
+                        <span id="nav-cover-2"></span>
                     </div>
                     <div class="nav-option">
                         <h1 class="nav-option-text">Branding</h1>
+                        <span id="nav-cover-3"></span>
                     </div>
                 </div>
                 <p class="hero-text-description">
-                    Leading digital agency with solid design and development <br>
-                    expertise. We build mobile and web products for startups and design <br>
-                    intricate trading platforms.
+                    <span class="hero-text-1">
+                        Leading digital agency with solid design and development <br>
+                        <span id="hero-text-cover-1"></span>
+                    </span>
+                    <span class="hero-text-2">
+                        expertise. We build mobile and web products for startups and design <br>
+                        <span id="hero-text-cover-2"></span>
+                    </span>
+                    <span class="hero-text-3">
+                        intricate trading platforms.
+                        <span id="hero-text-cover-3"></span>
+                    </span>
                 </p>
             </div>
             <div class="featured-projects">
@@ -355,7 +396,24 @@
         document.addEventListener("scroll", hijackScrolling);
 
         function hijackScrolling() {
+            event.preventDefault();
+            window.scrollTo(0, 0);
+            document.getElementById('planets-img').style.width = "400px";
+            document.getElementById('planets-img').style.opacity = "0";
+            document.getElementById('planets-img').style["margin-right"] = "100px";
+            document.getElementById('planets-img').style["margin-top"] = "68px";
             
+            document.querySelector('#we-do-it-all-cover').style["height"] = "40px";
+
+            window.setTimeout(() => { document.querySelector('#nav-cover-1').style["height"] = "70px" }, 0);
+            window.setTimeout(() => { document.querySelector('#nav-cover-2').style["height"] = "70px" }, 100);
+            window.setTimeout(() => { document.querySelector('#nav-cover-3').style["height"] = "70px" }, 200);
+
+            window.setTimeout(() => { document.querySelector('#hero-text-cover-1').style["height"] = "70px" }, 0);
+            window.setTimeout(() => { document.querySelector('#hero-text-cover-2').style["height"] = "70px" }, 100);
+            window.setTimeout(() => { document.querySelector('#hero-text-cover-3').style["height"] = "70px" }, 200);
+
+            window.setTimeout(() => { document.querySelector('.featured-projects').style.bottom = "-80px" }, 300);
         }
     </script>
 </html>
