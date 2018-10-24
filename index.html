@@ -1,419 +1,618 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            @font-face {
-                font-family: circe;
-                src: url("CRC35.otf") format("opentype");
-            }
-            @font-face {
-                font-family: circe;
-                font-weight: bold;
-                src: url("CRCBold.otf") format("opentype");
-            }
-            @font-face {
-                font-family: din-condensed;
-                font-weight: bold;
-                src: url("D-DINCondensed-Bold.otf") format("opentype");
-            }
 
-            body, html {
-                font-family: circe;
-                margin: 0;
-            }
-            p, h1 {
-                margin: 0;
-            }
-            h1.site-name {
-                font-weight: bold;
-                margin: 2.5rem 2rem;
-                font-size: 1.8rem;
-                width: fit-content;
-                position: absolute;
-                top: 0;
-            }
-            .menu-bars {
-                position: absolute;
-                right: 3rem;
-                top: 4rem;
-                height: 30px;
-                width: 30px;
-                cursor: pointer;
-            }
-            .menu-bar-1, .menu-bar-2 {
-                background: black;
-                height: 2px;
-                position: absolute;
-                transition: all 0.25s;
-            }
-            .menu-bar-1 {
-                width: 30px;
-                left: 0;
-                top: 10px;
-            }
-            .menu-bar-2 {
-                width: 16px;
-                right: 0;
-                top: 19px;
-            }
-            .menu-bars:hover .menu-bar-1 {
-                width: 16px;
-            }
-            .menu-bars:hover .menu-bar-2 {
-                width: 30px;
-            }
-            .page {
-                height: 100vh;
-                position: relative;
-            }
-            img.planets {
-                position: absolute;
-                right: 4rem;
-                top: 6rem;
-                width: 600px;
-                transition: all 0.4s;
-            }
-            .hero-text {
-                width: 570px;
-                position: absolute;
-                bottom: 135px;
-                left: 90px;
-            }
-            .hero-text-1, .hero-text-2, .hero-text-3 {
-                position: relative;
-            }
-            .we-do-it-all {
-                font-size: 1.9rem;
-                color: #b7b4b4;
-                position: relative;
-            }
-            #we-do-it-all-cover, 
-            #nav-cover-1, 
-            #nav-cover-2, 
-            #nav-cover-3,
-            #hero-text-cover-1,
-            #hero-text-cover-2,
-            #hero-text-cover-3 {
-                position: absolute;
-                width: 100%;
-                height: 0;
-                transition: all 0.4s;
-                bottom: 0;
-                left: 0;
-                background: white;
-            }
-            #hero-text-cover-1,
-            #hero-text-cover-2,
-            #hero-text-cover-3 {
-                width: 640px;
-            }
-            .nav {
-                display: flex;
-                justify-content: space-between;
-                position: relative;
-            }
-            .nav-option {
-                position: relative;
-                transition: all 0.25s;
-                cursor: pointer;
-            }
-            .nav-option::before {
-                content: '';
-                background: #e8e9e8;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 42%;
-                bottom: calc(58% - 7px);
-                z-index: -1;
-                transition: all 0.25s;
-            }
-            .nav-option:hover {
-                color: white;
-            }
-            .nav-option:hover::before {
-                background: black;
-                top: 10px;
-                bottom: 10px;
-            }
-            .nav-option-text {
-                font-size: 3.1rem;
-                font-weight: normal;
-            }
-            .hero-text-description {
-                font-size: 1.25rem;
-                letter-spacing: 0.05rem;
-                line-height: 2.3rem;
-                margin-top: 1rem;
-                width: 640px;
-            }
-            .featured-projects {
-                position: absolute;
-                left: 90px;
-                bottom: 0;
-                width: fit-content;
-                transition: all 0.2s;
-                cursor: pointer;
-            }
-            .featured-projects:hover {
-                bottom: -10px;
-                padding-top: 10px;
-            }
-            .featured-projects-text {
-                font-weight: bold;
-                font-family: 'din-condensed';
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-            }
-            .featured-projects-bar {
-                position: relative;
-                height: 50px;
-                width: 1px;
-                background: #dedcdc;
-                margin-top: 10px;
-            }
-            .featured-projects-bar::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                background: black;
+<head>
+    <style>
+        @font-face {
+            font-family: circe;
+            src: url("CRC35.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: circe;
+            font-weight: bold;
+            src: url("CRCBold.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: din-condensed;
+            font-weight: bold;
+            src: url("D-DINCondensed-Bold.otf") format("opentype");
+        }
+
+        body,
+        html {
+            font-family: circe;
+            margin: 0;
+        }
+
+        p,
+        h1 {
+            margin: 0;
+        }
+
+        h1.site-name {
+            font-weight: bold;
+            margin: 2.5rem 2rem;
+            font-size: 1.8rem;
+            width: fit-content;
+            position: absolute;
+            top: 0;
+            z-index: 9;
+        }
+
+        .menu-bars {
+            position: absolute;
+            right: 3rem;
+            top: 4rem;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            z-index: 9;
+        }
+
+        .menu-bar-1,
+        .menu-bar-2 {
+            background: black;
+            height: 2px;
+            position: absolute;
+            transition: all 0.25s;
+        }
+
+        .menu-bar-1 {
+            width: 30px;
+            left: 0;
+            top: 10px;
+        }
+
+        .menu-bar-2 {
+            width: 16px;
+            right: 0;
+            top: 19px;
+        }
+
+        .menu-bars:hover .menu-bar-1 {
+            width: 16px;
+        }
+
+        .menu-bars:hover .menu-bar-2 {
+            width: 30px;
+        }
+
+        .page {
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            background: white;
+        }
+
+        .landing-page {
+            z-index: 2;
+        }
+
+        .dsx-page {
+            z-index: 1;
+        }
+
+        img.planets {
+            position: absolute;
+            right: 4rem;
+            top: 6rem;
+            width: 600px;
+            transition: all 0.4s;
+        }
+
+        .hero-text {
+            width: 570px;
+            position: absolute;
+            bottom: 135px;
+            left: 90px;
+        }
+
+        .hero-text-1,
+        .hero-text-2,
+        .hero-text-3 {
+            position: relative;
+        }
+
+        .we-do-it-all {
+            font-size: 1.9rem;
+            color: #b7b4b4;
+            position: relative;
+        }
+
+        #we-do-it-all-cover,
+        #nav-cover-1,
+        #nav-cover-2,
+        #nav-cover-3,
+        #hero-text-cover-1,
+        #hero-text-cover-2,
+        #hero-text-cover-3 {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            transition: all 0.4s;
+            bottom: 0;
+            left: 0;
+            background: white;
+        }
+
+        #hero-text-cover-1,
+        #hero-text-cover-2,
+        #hero-text-cover-3 {
+            width: 640px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .nav-option {
+            position: relative;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .nav-option::before {
+            content: '';
+            background: #e8e9e8;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 42%;
+            bottom: calc(58% - 7px);
+            z-index: -1;
+            transition: all 0.25s;
+        }
+
+        .nav-option:hover {
+            color: white;
+        }
+
+        .nav-option:hover::before {
+            background: black;
+            top: 10px;
+            bottom: 10px;
+        }
+
+        .nav-option-text {
+            font-size: 3.1rem;
+            font-weight: normal;
+        }
+
+        .hero-text-description {
+            font-size: 1.25rem;
+            letter-spacing: 0.05rem;
+            line-height: 2.3rem;
+            margin-top: 1rem;
+            width: 640px;
+        }
+
+        .featured-projects {
+            position: absolute;
+            left: 90px;
+            bottom: 0;
+            width: fit-content;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .featured-projects:hover {
+            bottom: -10px;
+            padding-top: 10px;
+        }
+
+        .featured-projects-text {
+            font-weight: bold;
+            font-family: 'din-condensed';
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .featured-projects-bar {
+            position: relative;
+            height: 50px;
+            width: 1px;
+            background: #dedcdc;
+            margin-top: 10px;
+        }
+
+        .featured-projects-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            background: black;
+            bottom: 50px;
+            width: 1px;
+            animation: featured-projects-bar-height 2s infinite;
+        }
+
+        .pointer-follow {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: solid 2px #3c3b3b;
+            border-radius: 50%;
+            transition:
+                left 0.1s,
+                top 0.1s,
+                width 0.4s,
+                height 0.4s,
+                border 0.4s,
+                margin-left 0.4s,
+                margin-top 0.4s;
+            pointer-events: none;
+            transform-origin: center;
+            z-index: 4;
+        }
+
+        .project-text {
+            width: 50vw;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .featured-project {
+            position: absolute;
+            left: 45px;
+            top: 140px;
+            width: 0;
+            height: 22px;
+            overflow: hidden;
+            transition: width 0.6s;
+        }
+
+        .dsx-background {
+            background: #3625d3;
+        }
+
+        .featured-project-text {
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.1rem 0.5rem;
+            text-shadow: white 0.6px 0px;
+            letter-spacing: 1px;
+            position: absolute;
+            right: 140px;
+            transition: right 0.6s;
+            white-space: nowrap;
+        }
+
+        .project-copy {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: 90px;
+            width: 310px;
+            top: calc(100vh / 2 + -100px);
+        }
+
+        .project-title {
+            font-weight: normal;
+        }
+
+        .project-description {
+            color: #7b7979;
+            font-size: 1.8rem;
+        }
+
+        .project-elements {
+            color: #7b7979;
+            margin-top: 1.75rem;
+            text-shadow: #7b7979 0.3px 0px;
+        }
+
+        #project-title-cover,
+        #project-description-cover-1,
+        #project-description-cover-2,
+        #project-description-cover-3,
+        #project-elements-cover {
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            transition: all 0.4s;
+            top: 0;
+            left: 0;
+            background: white;
+        }
+
+        .project-description-1,
+        .project-description-2,
+        .project-description-3,
+        .project-elements {
+            position: relative;
+        }
+
+        .view-case-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 230px;
+            height: 230px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .view-case-text {
+            font-family: 'din-condensed';
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            height: 0;
+            width: 74px;
+            transition: height 0.4s;
+            overflow: hidden;
+        }
+
+        .view-case-bar {
+            width: 0;
+            height: 3px;
+            margin-right: 36px;
+            transition: all 0.4s;
+        }
+
+        .placeholder {
+            position: absolute;
+            bottom: 0;
+            font-size: 620px;
+            font-weight: bold;
+            width: 100vw;
+            text-align: center;
+            color: #8e8e8e;
+            z-index: 1;
+        }
+
+        .project-image {
+            width: 100vw;
+            position: absolute;
+            right: 100vw;
+            top: 0;
+            bottom: 0;
+            transition: right 0.8s;
+        }
+
+        .project-image.dsx-background {}
+
+        @keyframes featured-projects-bar-height {
+            0% {
                 bottom: 50px;
-                width: 1px;
-                animation: featured-projects-bar-height 2s infinite;
-            }
-            .pointer-follow {
-                position: absolute;
-                width: 40px;
-                height: 40px;
-                border: solid 2px #3c3b3b;
-                border-radius: 50%;
-                transition: 
-                    left 0.1s, 
-                    top 0.1s, 
-                    width 0.4s, 
-                    height 0.4s, 
-                    border 0.4s,
-                    margin-left 0.4s,
-                    margin-top 0.4s;
-                pointer-events: none;
-                transform-origin: center;
-            }
-            .project-text {
-                width: 50vw;
-                position: absolute;
-                left: 0;
                 top: 0;
+            }
+
+            25% {
                 bottom: 0;
-            }
-            .featured-project {
-                position: absolute;
-                left: 45px;
-                top: 140px;
-                width: 140px;
-            }
-            .dsx-background {
-                background: #3625d3;
-            }
-            .featured-project-text {
-                color: white;
-                font-size: 0.8rem;
-                padding: 0.1rem 0.5rem;
-                text-shadow: white 0.6px 0px;
-                letter-spacing: 1px;
-            }
-            .project-copy {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                left: 90px;
-                width: 310px;
-                top: calc(100vh / 2 + -100px);
-            }
-            .project-title {
-                font-weight: normal;
-            }
-            .project-description {
-                color: #7b7979;
-                font-size: 1.8rem;
-            }
-            .project-elements {
-                color: #7b7979;
-                margin-top: 1.75rem;
-                text-shadow: #7b7979 0.3px 0px;
-            }
-            .view-case-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 230px;
-                height: 230px;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-            }
-            .view-case-text {
-                font-family: 'din-condensed';
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-                position: relative;
-            }
-            .view-case-text::before {
-                content: '';
-                position: absolute;
-                height: 3px;
-                background: #3625d3;
-                width: 100%;
-                bottom: -10px;
-            }
-            .placeholder {
-                position: absolute;
-                bottom: 0;
-                font-size: 620px;
-                font-weight: bold;
-                width: 100%;
-                text-align: center;
-                color: #8e8e8e;
-                z-index: 1;
-            }
-            .project-image {
-                width: 50vw;
-                position: absolute;
-                right: 0;
                 top: 0;
+            }
+
+            50% {
                 bottom: 0;
-            }
-
-            @keyframes featured-projects-bar-height {
-                0% { bottom: 50px; top: 0; }
-                25% { bottom: 0; top: 0; }
-                50% { bottom: 0; top: 50px; }
-            }
-        </style>
-    </head>
-    <body>
-        <h1 class="site-name">cuberto</h1>
-        <div class="menu-bars">
-            <div class="menu-bar-1"></div>
-            <div class="menu-bar-2"></div>
-        </div>
-        <div class="landing-page page">
-            <img id="planets-img" class="planets" src="planets.svg" />
-            <div class="hero-text">
-                <p class="we-do-it-all">
-                    We do it all
-                    <span id="we-do-it-all-cover"></span>
-                </p>
-                <div class="nav">
-                    <div class="nav-option">
-                        <h1 class="nav-option-text">Websites</h1>
-                        <span id="nav-cover-1"></span>
-                    </div>
-                    <div class="nav-option">
-                        <h1 class="nav-option-text">Apps</h1>
-                        <span id="nav-cover-2"></span>
-                    </div>
-                    <div class="nav-option">
-                        <h1 class="nav-option-text">Branding</h1>
-                        <span id="nav-cover-3"></span>
-                    </div>
-                </div>
-                <p class="hero-text-description">
-                    <span class="hero-text-1">
-                        Leading digital agency with solid design and development <br>
-                        <span id="hero-text-cover-1"></span>
-                    </span>
-                    <span class="hero-text-2">
-                        expertise. We build mobile and web products for startups and design <br>
-                        <span id="hero-text-cover-2"></span>
-                    </span>
-                    <span class="hero-text-3">
-                        intricate trading platforms.
-                        <span id="hero-text-cover-3"></span>
-                    </span>
-                </p>
-            </div>
-            <div class="featured-projects">
-                <p class="featured-projects-text">FEATURED PROJECTS</p>
-                <div class="featured-projects-bar"></div>
-            </div>
-        </div>
-        <div class="dsx-page page">
-            <div class="project-text">
-                <div class="featured-project dsx-background">
-                    <p class="featured-project-text">featured project</p>
-                </div>
-                <div class="project-copy">
-                    <h1 class="project-title">DSX</h1>
-                    <p class="project-description">Creation of a trading cryptocurrency exchange platform.</p>
-                    <p class="project-elements">branding, design, development, product</p>
-                </div>
-                <div class="view-case-container">
-                    <p class="view-case-text">VIEW CASE</p>
-                </div>
-            </div>
-            <p class="placeholder">D</p>
-            <div class="project-image dsx-background">
-
-            </div>
-        </div>
-        <div class="pointer-follow"></div>
-    </body>
-    <script>
-        document.addEventListener("mousemove", circleCursorFollower);
-
-        function circleCursorFollower() {
-            let cursorFollow = document.getElementsByClassName("pointer-follow")[0];
-            if (Date.now() % 2 === 1) {
-                cursorFollow.style.left = (event.clientX - 20) + "px";
-                cursorFollow.style.top = (event.clientY - 20) + "px";
-            }
-            console.log(event.clientX + ", " + event.clientY);
-
-            if (
-                (event.clientX > 65 && event.clientX < 681 && event.clientY > 509 && event.clientY < 618) ||
-                (event.clientX > 1226 && event.clientY > 35 && event.clientY < 102) ||
-                (event.clientY > window.innerHeight - 107 && event.clientX > 60 && event.clientX < 249) ||
-                (event.clientX > 640 && event.clientX < 1276 && event.clientY > 72 && event.clientY < 502) ||
-                (event.clientX < 22) ||
-                (event.clientY < 22) ||
-                (event.clientX > window.innerWidth - 32) ||
-                (event.clientY > window.innerHeight - 32)
-            ) {
-                cursorFollow.style.width = "0px";
-                cursorFollow.style.height = "0px";
-                cursorFollow.style["border-width"] = "0";
-                cursorFollow.style["margin-left"] = "20px";
-                cursorFollow.style["margin-top"] = "20px";
-            } else {
-                cursorFollow.style.width = "40px";
-                cursorFollow.style.height = "40px";
-                cursorFollow.style["border-width"] = "2px";
-                cursorFollow.style["margin-left"] = "0";
-                cursorFollow.style["margin-top"] = "0";
+                top: 50px;
             }
         }
+    </style>
+</head>
 
-        document.addEventListener("scroll", hijackScrolling);
+<body>
+    <h1 class="site-name">cuberto</h1>
+    <div class="menu-bars">
+        <div class="menu-bar-1"></div>
+        <div class="menu-bar-2"></div>
+    </div>
+    <div class="landing-page page">
+        <img id="planets-img" class="planets" src="planets.svg" />
+        <div class="hero-text">
+            <p class="we-do-it-all">
+                We do it all
+                <span id="we-do-it-all-cover"></span>
+            </p>
+            <div class="nav">
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Websites</h1>
+                    <span id="nav-cover-1"></span>
+                </div>
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Apps</h1>
+                    <span id="nav-cover-2"></span>
+                </div>
+                <div class="nav-option">
+                    <h1 class="nav-option-text">Branding</h1>
+                    <span id="nav-cover-3"></span>
+                </div>
+            </div>
+            <p class="hero-text-description">
+                <span class="hero-text-1">
+                    Leading digital agency with solid design and development <br>
+                    <span id="hero-text-cover-1"></span>
+                </span>
+                <span class="hero-text-2">
+                    expertise. We build mobile and web products for startups and design <br>
+                    <span id="hero-text-cover-2"></span>
+                </span>
+                <span class="hero-text-3">
+                    intricate trading platforms.
+                    <span id="hero-text-cover-3"></span>
+                </span>
+            </p>
+        </div>
+        <div class="featured-projects">
+            <p class="featured-projects-text">FEATURED PROJECTS</p>
+            <div class="featured-projects-bar"></div>
+        </div>
+    </div>
+    <div class="dsx-page page">
+        <div class="project-text">
+            <div class="featured-project dsx-background">
+                <p class="featured-project-text">featured project</p>
+            </div>
+            <div class="project-copy">
+                <h1 class="project-title">
+                    <span id="project-title-cover"></span>
+                    DSX
+                </h1>
+                <p class="project-description">
+                    <span class="project-description-1">
+                        <span id="project-description-cover-1"></span>
+                        Creation of a trading <br>
+                    </span>
+                    <span class="project-description-2">
+                        <span id="project-description-cover-2"></span>
+                        cryptocurrency exchange <br>
+                    </span>
+                    <span class="project-description-3">
+                        <span id="project-description-cover-3"></span>
+                        platform.
+                    </span>
+                </p>
+                <p class="project-elements">
+                    <span id="project-elements-cover"></span>
+                    branding, design, development, product
+                </p>
+            </div>
+            <div class="view-case-container">
+                <p class="view-case-text">VIEW CASE</p>
+                <div class="view-case-bar dsx-background"></div>
+            </div>
+        </div>
+        <p class="placeholder">D</p>
+        <div class="project-image dsx-background">
 
-        function hijackScrolling() {
-            event.preventDefault();
-            window.scrollTo(0, 0);
-            document.getElementById('planets-img').style.width = "400px";
-            document.getElementById('planets-img').style.opacity = "0";
-            document.getElementById('planets-img').style["margin-right"] = "100px";
-            document.getElementById('planets-img').style["margin-top"] = "68px";
-            
-            document.querySelector('#we-do-it-all-cover').style["height"] = "40px";
+        </div>
+    </div>
+    <div class="pointer-follow"></div>
+</body>
+<script>
+    document.addEventListener("mousemove", circleCursorFollower);
 
-            window.setTimeout(() => { document.querySelector('#nav-cover-1').style["height"] = "70px" }, 0);
-            window.setTimeout(() => { document.querySelector('#nav-cover-2').style["height"] = "70px" }, 100);
-            window.setTimeout(() => { document.querySelector('#nav-cover-3').style["height"] = "70px" }, 200);
-
-            window.setTimeout(() => { document.querySelector('#hero-text-cover-1').style["height"] = "70px" }, 0);
-            window.setTimeout(() => { document.querySelector('#hero-text-cover-2').style["height"] = "70px" }, 100);
-            window.setTimeout(() => { document.querySelector('#hero-text-cover-3').style["height"] = "70px" }, 200);
-
-            window.setTimeout(() => { document.querySelector('.featured-projects').style.bottom = "-80px" }, 300);
+    function circleCursorFollower() {
+        let cursorFollow = document.getElementsByClassName("pointer-follow")[0];
+        if (Date.now() % 2 === 1) {
+            cursorFollow.style.left = (event.clientX - 20) + "px";
+            cursorFollow.style.top = (event.clientY - 20) + "px";
         }
-    </script>
+        console.log(event.clientX + ", " + event.clientY);
+
+        if (
+            (event.clientX > 65 && event.clientX < 681 && event.clientY > 509 && event.clientY < 618) ||
+            (event.clientX > 1226 && event.clientY > 35 && event.clientY < 102) ||
+            (event.clientY > window.innerHeight - 107 && event.clientX > 60 && event.clientX < 249) ||
+            (event.clientX > 640 && event.clientX < 1276 && event.clientY > 72 && event.clientY < 502) ||
+            (event.clientX < 22) ||
+            (event.clientY < 22) ||
+            (event.clientX > window.innerWidth - 32) ||
+            (event.clientY > window.innerHeight - 32)
+        ) {
+            cursorFollow.style.width = "0px";
+            cursorFollow.style.height = "0px";
+            cursorFollow.style["border-width"] = "0";
+            cursorFollow.style["margin-left"] = "20px";
+            cursorFollow.style["margin-top"] = "20px";
+        } else {
+            cursorFollow.style.width = "40px";
+            cursorFollow.style.height = "40px";
+            cursorFollow.style["border-width"] = "2px";
+            cursorFollow.style["margin-left"] = "0";
+            cursorFollow.style["margin-top"] = "0";
+        }
+    }
+
+    document.addEventListener("wheel", hijackScrolling);
+
+    function hijackScrolling() {
+        event.preventDefault();
+        window.scrollTo(0, 0);
+
+        if (event.deltaY > 0) {
+            scrollForwardFromFirstPage();
+            window.setTimeout(() => { scrollForwardToSecondPage(); }, 800);
+        } else {
+            window.setTimeout(() => { scrollBackToFirstPage(); }, 1400);
+            scrollBackFromSecondPage();
+        }
+    }
+
+    function scrollForwardFromFirstPage() {
+        document.getElementById('planets-img').style.width = "400px";
+        document.getElementById('planets-img').style.opacity = "0";
+        document.getElementById('planets-img').style["margin-right"] = "100px";
+        document.getElementById('planets-img').style["margin-top"] = "68px";
+
+        document.querySelector('#we-do-it-all-cover').style["height"] = "40px";
+
+        window.setTimeout(() => { document.querySelector('#nav-cover-1').style["height"] = "70px" }, 0);
+        window.setTimeout(() => { document.querySelector('#nav-cover-2').style["height"] = "70px" }, 100);
+        window.setTimeout(() => { document.querySelector('#nav-cover-3').style["height"] = "70px" }, 200);
+
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-1').style["height"] = "70px" }, 0);
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-2').style["height"] = "70px" }, 100);
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-3').style["height"] = "70px" }, 200);
+
+        window.setTimeout(() => { document.querySelector('.featured-projects').style.bottom = "-80px" }, 300);
+    }
+
+    function scrollForwardToSecondPage() {
+        document.getElementsByClassName('dsx-page')[0].style["z-index"] = "4";
+
+        document.getElementsByClassName("project-image")[0].style.right = "-50vw";
+        window.setTimeout(() => { document.getElementsByClassName("featured-project")[0].style.width = "140px"; }, 600);
+        window.setTimeout(() => { document.getElementsByClassName("featured-project-text")[0].style.right = "19.5px"; }, 700);
+
+        window.setTimeout(() => { document.getElementById('project-title-cover').style["height"] = "0"; }, 600);
+
+        window.setTimeout(() => { document.getElementById('project-description-cover-1').style["height"] = "0" }, 600);
+        window.setTimeout(() => { document.getElementById('project-description-cover-2').style["height"] = "0" }, 700);
+        window.setTimeout(() => { document.getElementById('project-description-cover-3').style["height"] = "0" }, 800);
+
+        window.setTimeout(() => { document.getElementById('project-elements-cover').style["height"] = "0" }, 900);
+
+        window.setTimeout(() => { document.getElementsByClassName('view-case-text')[0].style["height"] = "30px" }, 1300);
+        window.setTimeout(() => { document.getElementsByClassName('view-case-bar')[0].style["width"] = "74px" }, 900);
+        window.setTimeout(() => { document.getElementsByClassName('view-case-bar')[0].style["margin-right"] = "0" }, 900);
+    }
+
+    function scrollBackToFirstPage() {
+        document.getElementsByClassName('dsx-page')[0].style["z-index"] = "1";
+
+        document.getElementById('planets-img').style.width = "600px";
+        document.getElementById('planets-img').style.opacity = "1";
+        document.getElementById('planets-img').style["margin-right"] = "0";
+        document.getElementById('planets-img').style["margin-top"] = "0";
+
+        document.querySelector('#we-do-it-all-cover').style["height"] = "0";
+
+        window.setTimeout(() => { document.querySelector('#nav-cover-1').style["height"] = "0" }, 200);
+        window.setTimeout(() => { document.querySelector('#nav-cover-2').style["height"] = "0" }, 100);
+        window.setTimeout(() => { document.querySelector('#nav-cover-3').style["height"] = "0" }, 0);
+
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-1').style["height"] = "0" }, 200);
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-2').style["height"] = "0" }, 100);
+        window.setTimeout(() => { document.querySelector('#hero-text-cover-3').style["height"] = "0" }, 0);
+
+        window.setTimeout(() => { document.querySelector('.featured-projects').style.bottom = "0" }, 0);
+    }
+
+    function scrollBackFromSecondPage() {
+        window.setTimeout(() => { document.getElementsByClassName("project-image")[0].style.right = "100vw"; }, 600);
+        window.setTimeout(() => { document.getElementsByClassName("featured-project")[0].style.width = "0"; }, 200);
+        document.getElementsByClassName("featured-project-text")[0].style.right = "140px";
+
+        window.setTimeout(() => { document.getElementById('project-title-cover').style["height"] = "40px"; }, 500);
+
+        window.setTimeout(() => { document.getElementById('project-description-cover-1').style["height"] = "40px" }, 400);
+        window.setTimeout(() => { document.getElementById('project-description-cover-2').style["height"] = "40px" }, 250);
+        window.setTimeout(() => { document.getElementById('project-description-cover-3').style["height"] = "40px" }, 100);
+
+        document.getElementById('project-elements-cover').style["height"] = "40px";
+
+        document.getElementsByClassName('view-case-text')[0].style["height"] = "0";
+        window.setTimeout(() => { document.getElementsByClassName('view-case-bar')[0].style["width"] = "0"; }, 200);
+        window.setTimeout(() => { document.getElementsByClassName('view-case-bar')[0].style["margin-right"] = "36px"; }, 200);
+    }
+</script>
+
 </html>
